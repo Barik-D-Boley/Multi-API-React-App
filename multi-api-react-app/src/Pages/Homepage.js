@@ -2,7 +2,7 @@ import React, { /* useState */ } from 'react'
 
 // Use Google Maps API to put in recipe ingredients and find stores nearby to buy them at
 function Homepage() {
-// Recipes
+// Recipes API
     fetch('https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9')
     .then(response => {
         console.log('Recipe');
@@ -12,48 +12,40 @@ function Homepage() {
     .catch(err => {
         console.log(err);
     })
-// Google Sheets
-    fetch('https://google-sheets-toolbox.p.rapidapi.com/', {
-        'method': 'POST',
-        'headers': {
-            'content-type': 'application/json',
-            'x-rapidapi-host': 'google-sheets-toolbox.p.rapidapi.com',
-            'x-rapidapi-key': '39eb21bbd1msha190384ce6dd237p1d93c8jsn16d5c24c24db'
-        },
-        'body': {
-            'action': 'add sheet',
-            'options': {
-                'addNewRows': [
-                    [
-                        'alpha',
-                        '1'
-                    ],
-                    [
-                        'omega',
-                        '2'
-                    ]
-                ],
-                'googleClientEmail': 'rapidapi-demo@coinsy-alpha.iam.gserviceaccount.com',
-                'googlePrivateKey': 'MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCVDX9BEIew4c2poxv/oglrGIHhzwZWfkwK9OeCJ07fDOGA7gH81Co2v+7yGzWW61i5T7dbFjsHuxwTwbNK4B5Vc1SRV8tSxJt5F5HQYRbieAxg80xswXHevmK/lxeVjlJ/kzGcs2Ajx0KzBocLMUBAh20uEor1ROeBf05NZGXu8S03C5Khr5FLotWzPO7i37qpYbLba4ZeIHInW27rQShvDs0LWn/vB/u6ATp5G2Mjl7OrI6h8IxjQNbilbexOnWHCZvsNfG4f1DUu/MeW2E87ofxjiZo1sc8qr9lZfBg0oVEGHnDc2glQJmNdxg1PuRsKeDOGNj/mv5ufeWYnjkarAgMBAAECggEACFVI2Apki68UIHfOCOy2OhaUrFs2r39AIRywFMa90hqWQO8NjWUPNyBj64U56cYen72lMqJ7imMbnr8llvoQuBZKlBWkeGwlhQ+cR1omPWMYzhLMIwhtpVZfjvaTivj6A8fm7ivZJCbvw7KJukZ2oSTxJbJDspK3nrXPWuRSDpm3ZOOOpRqj/FJqUWblqKjXXZNGUp9n9JMgI5CtcaHO7rAovU7vm19yN90DHAdVk474dUaSPHl/rpdPUhWXcTLSGGBVBjAq5QlLUadgM/thPSa5wI29KlQcneEp5yQA4O3vJCA/w3Uf+0AVsbjqOhF9edfYJKAl7FqfQfjJ6ysvgQKBgQDG9eA2SQX816tcSLpaifI3y+bNXGiz6Vyo7wuamKWPYNfDG75ndssYQFJipeKsNnH16uPOTydGL8A1pFXTy+3YUMPkBo2hphVpAgHlREapz8MQl8p0rlspSvcFNIKMxnZPztJLZJxMSr3IQpggt02W4H4t2fV0nwZ3mpru6+BQdQKBgQC/yMnbLqa1gO8vXiDUGU/ijnu99RvLeHZSQTKxgZytJKL032w9whXuJMarmFxgFjEy1Y6y1hXNlwb8Mw58pb3W6jN7LtCKJ9h8CiL/tl75yTfe/YdpKDo3D/JqezMdh/Z1VYYBcBMEim8/T9Fr0/fYVTQDrwcLPr3rPnAUlMFWnwKBgQCnzbQ+1LPyHkvu14Ak4Hejy5tr1OaR5t45tPOKffgUx07yxbF/PdfpKkbR4KsfKARRrrxXwraTIa7xDxs8OKDvcp7k8Qn/Lj6chA7pOP6INiyFECC27F8CorFYeIMrDC+4++ytnbudNOR/xHreDPuppsmFDnFQ3NbthT3rCJH2CQKBgQCRjcc9dVOLD1b4oTzTHH7XmIHrsnos27kZRmg99fu+IL8Yj/TrjkDso7awhwsc1drzFMefjQGxLf1cLTfCfFvvH4KA7A/Tutf/lAXqAzRj6UZhFBPQSHqeTZkTHXu23vi7JnR05OVaHeK+r0pmxtIkus2mOhFjhHPJdXLE+/0cSwKBgFmXQSHousyeZBwaRIya3Xwt17yWxOoS0Mw6RWNDu4J7MiYlSpdzBxOD/qqDFHcRxi03/9xu9rVG19in64x58nEEN133yBS/e9YHAjOj7MYuPs/hmD1NhKmrP0vxQmD0dWtTruB6wQf+oFpk02AlEJWyjwxBP9dIQBy+9CJleHaF',
-                'googleSheetId': '1XT_c-iUVE6LfxsasKGM3HF9WkQZICH9QtnytVBMcoRY',
-                'googleSheetTabTitle': 'Omega',
-                'sheetColumnCount': 2,
-                'sheetHeaders': [
-                    'users',
-                    'id'
-                ],
-                'sheetRowCount': 10
-            }
-        }
-    })
-    .then(response => {
-        console.log('Sheets');
-        const name = response.json();
-        console.log(name);  
-    })
-    .catch(err => {
-        console.error(err);
-    });
+// Google Sheets API
+    // fetch("https://google-sheets-toolbox.p.rapidapi.com/", {
+    //     "method": "POST",
+    //     "headers": {
+    //         "content-type": "application/json",
+    //         "x-rapidapi-host": "google-sheets-toolbox.p.rapidapi.com",
+    //         "x-rapidapi-key": "39eb21bbd1msha190384ce6dd237p1d93c8jsn16d5c24c24db"
+    //     },
+    //     "body": {
+    //         "action": "add rows",
+    //         "options": {
+    //             "addNewRows": [
+    //                 [
+    //                     "Alpha",
+    //                     "1"
+    //                 ],
+    //                 [
+    //                     "Omega",
+    //                     "2"
+    //                 ]
+    //             ],
+    //             "googleClientEmail": "multi-api-react-app@multi-api-react-app.iam.gserviceaccount.com",
+    //             "googlePrivateKey": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCiEAghy8OW8B7/\n3wIEWONQxrLCpw00DXvvngc/ZlAeVth/sy3Qx+1f5NrNbLppLI647B8EP9CJRxBg\ntgaNoiZcb+YSBMJRfxrpXvbf5RCUCqkHwI2beTl4at07CxW+5Xba82x7m/Ew15bv\nOHqvmQ02Jv1DfCwFQgyLw9PUHnMxU3V9arwulkGGYQjvSDNVHfjOdxn2YxHEPM2L\nz7Oal8BqGPaRQjlnHod4AwUxgo1Uuc4iLvTEGC72DYb9cxVKW4jVYIWC2QvpiCI7\nRgVQlj1SAMMDPn/XQvUmF2CPaDAafmyWz0k+EDKol4D5q50eI3FZsfiZX7920Woz\n5VnwzHnvAgMBAAECggEAPj5wESLkzU0OavHpIWhOblDSiaaFkK95IXANkpEmRnDO\nmEVmXGDdT85jJzESa6C8dFPkGcq0unT72lkvLSjRGQG1WMhRJeHuoSFjKl0dP+7U\nOvD+sm8d3p0UuT+pq3cQbkm+Kb+cJEk5ZEnJ/TWIeHsDHO9NLPvQO8IL0tWbIp8x\nfeoKP8BB44ldfLuXnSFxp55c3KevsOVSQAZHs/2z7BEKiYDE+MCw82Xppms3r5tB\nILt3SvWMEoUZoa5xw0XoyJ49gmTWYrB0/ZSDKULxQvW30QY3mZkgcdDFI85y4fsT\nERCEtsbm8ztjQ25A3yLDtWT/nywgwiBVFsHX6SDD4QKBgQDb5HVnjKTG0wrcXe7s\n2H64+2h1U9ejU/K/AX07d+QFUx2usps2jPUtTIQgfTjkSDip7XtnEzJx+h/pKKIz\n/xqCpQISSS6Hj1wjZdw3D8MvkU1HimsjHzF66CBaH1qmrvN24ca7+p+AFHMdQlWo\nf2+t5qrGRZ5sFyiI+Ij3wOW6nwKBgQC8rJopQgAbqPCaCpRaE+/sYrRIuXvLwbF9\nFuR6kt4fQCRFiQEI9ZWemH5dMKSaciX8jS2ZMxnXTfNz69IYkrmYFrA4FoDcdA6l\nlnQE+PLsK8P179HCUtMKcGXfh6miwqxhHZ7FePDMBhP9X3fXIcMaIVzNDFniBYdD\nq6x1cKZOsQKBgQCM6rCuhnxGipLIPE5UbD1xsHP11KA5pB/JdlvaE3AGVYiNHxrG\n77hjqkh2RamC6iGeDHnryWqnjkKK+iZQqihEFxjnvQxbhWznpmxkwO41+qkKstML\n8/6SpFWvS66daTrPMctZRjiXLQPEeXFJhTl9uXgxjgYDgSfR92xXUcAnQwKBgF8k\nSrjzZ0qLboi/PQAPfbUeMPtbTWn6Sp5hpOWKmif4GFJYPAVgkgpfq5kipl6boTwx\nlQTkF+vSiymxiUiK9LwU9NfTwTdp7tjhfa/kOduOVkr2nDf5vCJPe4+0wX4p3PM8\nFIxP6F150yq5sZzykYfjuwBLciff0c32DAlMvRCBAoGAfgXhAVe82sN4O5L37DcX\nXapR1pzQ49tZM696kXblzMJoD8Bl/eoYigBEdDjgZHPxEQ3iungj3kquWt3U8AeU\nv2QqhjdRFGgKlCfp+HDboMxMSPKYP5eFWIuv5SSpkl1T/5aHOQJAPCwleG1u4ylY\n86jGyJYESrzBk9QIqcGJMq0=\n-----END PRIVATE KEY-----\n",
+    //             "googleSheetId": "1Kl036ouyE0L-Mj_Rz6Ysvl4gfQfBrsGg57DW_uIqXso",
+    //             "googleSheetTabTitle": "Recipe 1"
+    //         }
+    //     }
+    // })
+    // .then(response => {
+    //     console.log(response);
+    // })
+    // .catch(err => {
+    //     console.error(err);
+    // });
 
     return (
         <div>
