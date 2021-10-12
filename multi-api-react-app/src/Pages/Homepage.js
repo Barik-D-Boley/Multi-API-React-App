@@ -1,10 +1,40 @@
-import React, { /* useState */ } from 'react';
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 
+let clientEmail =  'multi-api-react-app@multi-api-react-app.iam.gserviceaccount.com';
+let privateKey = '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCiEAghy8OW8B7/\n3wIEWONQxrLCpw00DXvvngc/ZlAeVth/sy3Qx+1f5NrNbLppLI647B8EP9CJRxBg\ntgaNoiZcb+YSBMJRfxrpXvbf5RCUCqkHwI2beTl4at07CxW+5Xba82x7m/Ew15bv\nOHqvmQ02Jv1DfCwFQgyLw9PUHnMxU3V9arwulkGGYQjvSDNVHfjOdxn2YxHEPM2L\nz7Oal8BqGPaRQjlnHod4AwUxgo1Uuc4iLvTEGC72DYb9cxVKW4jVYIWC2QvpiCI7\nRgVQlj1SAMMDPn/XQvUmF2CPaDAafmyWz0k+EDKol4D5q50eI3FZsfiZX7920Woz\n5VnwzHnvAgMBAAECggEAPj5wESLkzU0OavHpIWhOblDSiaaFkK95IXANkpEmRnDO\nmEVmXGDdT85jJzESa6C8dFPkGcq0unT72lkvLSjRGQG1WMhRJeHuoSFjKl0dP+7U\nOvD+sm8d3p0UuT+pq3cQbkm+Kb+cJEk5ZEnJ/TWIeHsDHO9NLPvQO8IL0tWbIp8x\nfeoKP8BB44ldfLuXnSFxp55c3KevsOVSQAZHs/2z7BEKiYDE+MCw82Xppms3r5tB\nILt3SvWMEoUZoa5xw0XoyJ49gmTWYrB0/ZSDKULxQvW30QY3mZkgcdDFI85y4fsT\nERCEtsbm8ztjQ25A3yLDtWT/nywgwiBVFsHX6SDD4QKBgQDb5HVnjKTG0wrcXe7s\n2H64+2h1U9ejU/K/AX07d+QFUx2usps2jPUtTIQgfTjkSDip7XtnEzJx+h/pKKIz\n/xqCpQISSS6Hj1wjZdw3D8MvkU1HimsjHzF66CBaH1qmrvN24ca7+p+AFHMdQlWo\nf2+t5qrGRZ5sFyiI+Ij3wOW6nwKBgQC8rJopQgAbqPCaCpRaE+/sYrRIuXvLwbF9\nFuR6kt4fQCRFiQEI9ZWemH5dMKSaciX8jS2ZMxnXTfNz69IYkrmYFrA4FoDcdA6l\nlnQE+PLsK8P179HCUtMKcGXfh6miwqxhHZ7FePDMBhP9X3fXIcMaIVzNDFniBYdD\nq6x1cKZOsQKBgQCM6rCuhnxGipLIPE5UbD1xsHP11KA5pB/JdlvaE3AGVYiNHxrG\n77hjqkh2RamC6iGeDHnryWqnjkKK+iZQqihEFxjnvQxbhWznpmxkwO41+qkKstML\n8/6SpFWvS66daTrPMctZRjiXLQPEeXFJhTl9uXgxjgYDgSfR92xXUcAnQwKBgF8k\nSrjzZ0qLboi/PQAPfbUeMPtbTWn6Sp5hpOWKmif4GFJYPAVgkgpfq5kipl6boTwx\nlQTkF+vSiymxiUiK9LwU9NfTwTdp7tjhfa/kOduOVkr2nDf5vCJPe4+0wX4p3PM8\nFIxP6F150yq5sZzykYfjuwBLciff0c32DAlMvRCBAoGAfgXhAVe82sN4O5L37DcX\nXapR1pzQ49tZM696kXblzMJoD8Bl/eoYigBEdDjgZHPxEQ3iungj3kquWt3U8AeU\nv2QqhjdRFGgKlCfp+HDboMxMSPKYP5eFWIuv5SSpkl1T/5aHOQJAPCwleG1u4ylY\n86jGyJYESrzBk9QIqcGJMq0=\n-----END PRIVATE KEY-----\n';
 let spreadsheetId = '1Kl036ouyE0L-Mj_Rz6Ysvl4gfQfBrsGg57DW_uIqXso';
+let i = 1;
 
 function Homepage() {
+    const [queryText, setQueryText] = useState('Chicken');
+    const [cuisineType, setCuisineType] = useState('American');
+    const [mealType, setMealType] = useState('Dinner');
+
+    function getRecipes() {
+        setQueryText(document.getElementById('query').value);
+        setCuisineType(document.getElementById('cuisines').value);
+        setMealType(document.getElementById('mealType').value);
+
+        console.log(queryText);
+        console.log(cuisineType);
+        console.log(mealType);
+
+        console.log(`https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${cuisineType}&mealType=${mealType}&imageSize=SMALL&random=true`);
+
+        fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${cuisineType}&mealType=${mealType}&imageSize=SMALL&random=true`)
+        .then(response => {
+            let name = response.json();
+            console.log(name);  
+        })
+        .catch(err => {
+            console.error(err);
+        });
+    }
+
     function getSheets() {
+        i += 1;
+
         const options = {
         method: 'POST',
         url: 'https://google-sheets-toolbox.p.rapidapi.com/',
@@ -14,17 +44,18 @@ function Homepage() {
             'x-rapidapi-key': '39eb21bbd1msha190384ce6dd237p1d93c8jsn16d5c24c24db'
         },
         data: {
-            action: 'add rows',
+            action: 'add sheet',
             options: {
-            addNewRows: [['Onions', '1 cup'], ['Salt', '2 teaspoons']],
-            googleClientEmail: 'multi-api-react-app@multi-api-react-app.iam.gserviceaccount.com',
-            googlePrivateKey: '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCiEAghy8OW8B7/\n3wIEWONQxrLCpw00DXvvngc/ZlAeVth/sy3Qx+1f5NrNbLppLI647B8EP9CJRxBg\ntgaNoiZcb+YSBMJRfxrpXvbf5RCUCqkHwI2beTl4at07CxW+5Xba82x7m/Ew15bv\nOHqvmQ02Jv1DfCwFQgyLw9PUHnMxU3V9arwulkGGYQjvSDNVHfjOdxn2YxHEPM2L\nz7Oal8BqGPaRQjlnHod4AwUxgo1Uuc4iLvTEGC72DYb9cxVKW4jVYIWC2QvpiCI7\nRgVQlj1SAMMDPn/XQvUmF2CPaDAafmyWz0k+EDKol4D5q50eI3FZsfiZX7920Woz\n5VnwzHnvAgMBAAECggEAPj5wESLkzU0OavHpIWhOblDSiaaFkK95IXANkpEmRnDO\nmEVmXGDdT85jJzESa6C8dFPkGcq0unT72lkvLSjRGQG1WMhRJeHuoSFjKl0dP+7U\nOvD+sm8d3p0UuT+pq3cQbkm+Kb+cJEk5ZEnJ/TWIeHsDHO9NLPvQO8IL0tWbIp8x\nfeoKP8BB44ldfLuXnSFxp55c3KevsOVSQAZHs/2z7BEKiYDE+MCw82Xppms3r5tB\nILt3SvWMEoUZoa5xw0XoyJ49gmTWYrB0/ZSDKULxQvW30QY3mZkgcdDFI85y4fsT\nERCEtsbm8ztjQ25A3yLDtWT/nywgwiBVFsHX6SDD4QKBgQDb5HVnjKTG0wrcXe7s\n2H64+2h1U9ejU/K/AX07d+QFUx2usps2jPUtTIQgfTjkSDip7XtnEzJx+h/pKKIz\n/xqCpQISSS6Hj1wjZdw3D8MvkU1HimsjHzF66CBaH1qmrvN24ca7+p+AFHMdQlWo\nf2+t5qrGRZ5sFyiI+Ij3wOW6nwKBgQC8rJopQgAbqPCaCpRaE+/sYrRIuXvLwbF9\nFuR6kt4fQCRFiQEI9ZWemH5dMKSaciX8jS2ZMxnXTfNz69IYkrmYFrA4FoDcdA6l\nlnQE+PLsK8P179HCUtMKcGXfh6miwqxhHZ7FePDMBhP9X3fXIcMaIVzNDFniBYdD\nq6x1cKZOsQKBgQCM6rCuhnxGipLIPE5UbD1xsHP11KA5pB/JdlvaE3AGVYiNHxrG\n77hjqkh2RamC6iGeDHnryWqnjkKK+iZQqihEFxjnvQxbhWznpmxkwO41+qkKstML\n8/6SpFWvS66daTrPMctZRjiXLQPEeXFJhTl9uXgxjgYDgSfR92xXUcAnQwKBgF8k\nSrjzZ0qLboi/PQAPfbUeMPtbTWn6Sp5hpOWKmif4GFJYPAVgkgpfq5kipl6boTwx\nlQTkF+vSiymxiUiK9LwU9NfTwTdp7tjhfa/kOduOVkr2nDf5vCJPe4+0wX4p3PM8\nFIxP6F150yq5sZzykYfjuwBLciff0c32DAlMvRCBAoGAfgXhAVe82sN4O5L37DcX\nXapR1pzQ49tZM696kXblzMJoD8Bl/eoYigBEdDjgZHPxEQ3iungj3kquWt3U8AeU\nv2QqhjdRFGgKlCfp+HDboMxMSPKYP5eFWIuv5SSpkl1T/5aHOQJAPCwleG1u4ylY\n86jGyJYESrzBk9QIqcGJMq0=\n-----END PRIVATE KEY-----\n',
-            googleSheetId: spreadsheetId,
-            googleSheetTabTitle: 'Recipe 1'
+                addNewRows: [['Omega', '1'], ['Alpha', '2']],
+                googleClientEmail: clientEmail,
+                googlePrivateKey: privateKey,
+                googleSheetId: spreadsheetId,
+                googleSheetTabTitle: `Recipe ${i}`,
+                sheetColumnCount: 2,
+                sheetHeaders: ['Ingredient', 'Amount'],
+                sheetRowCount: 1
             }
-        }
-        };
-
+        }};
         axios.request(options).then(function (response) {
             console.log(response.data);
         }).catch(function (error) {
@@ -34,7 +65,40 @@ function Homepage() {
 
     return (
         <div>
-            <button onClick={() => getSheets()}>Hallo</button>
+            <button onClick={() => getSheets()}>Add Google Sheet</button>
+            <div>
+                <input type='text' id='query' name='query' placeholder='Chicken'/>
+                <select id='cuisines' name='cuisines'>
+                    <option className='empty' value='empty'>Select a Cuisine</option>
+                    <option className='formOption' value='American'>American</option>
+                    <option className='formOption' value='Asian'>Asian</option>
+                    <option className='formOption' value='British'>British</option>
+                    <option className='formOption' value='Caribbean'>Caribbean</option>
+                    <option className='formOption' value='Central%20European'>Central European</option>
+                    <option className='formOption' value='Chinese'>Chinese</option>
+                    <option className='formOption' value='Eastern%20European'>Eastern European</option>
+                    <option className='formOption' value='French'>French</option>
+                    <option className='formOption' value='Indian'>Indian</option>
+                    <option className='formOption' value='Italian'>Italian</option>
+                    <option className='formOption' value='Japanese'>Japanese</option>
+                    <option className='formOption' value='Kosher'>Kosher</option>
+                    <option className='formOption' value='Mediterranean'>Mediterranean</option>
+                    <option className='formOption' value='Mexican'>Mexican</option>
+                    <option className='formOption' value='Middle%20Eastern'>Middle Eastern</option>
+                    <option className='formOption' value='Nordic'>Nordic</option>
+                    <option className='formOption' value='South%20American'>South American</option>
+                    <option className='formOption' value='South%20East%20Asian'>South East Asian</option>
+                </select>
+                <select id='mealType' name='mealType'>
+                    <option className='empty' value='empty'>Select Meal Type</option>
+                    <option className='formOption' value='breakfast'>Breakfast</option>
+                    <option className='formOption' value='lunch'>Lunch</option>
+                    <option className='formOption' value='dinner'>Dinner</option>
+                    <option className='formOption' value='snack'>Snack</option>
+                    <option className='formOption' value='teatime'>Teatime</option>
+                </select>
+                <input type="submit" value='Submit' onClick={() => getRecipes()}/>
+            </div>
         </div>
     )
 }

@@ -1,3 +1,11 @@
+.empty {
+  color: gray;
+}
+
+.formOption {
+  color: black;
+}
+
 h1 {
   font-size: 10rem;
   text-align: center;
