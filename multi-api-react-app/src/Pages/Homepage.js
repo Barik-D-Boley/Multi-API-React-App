@@ -122,7 +122,7 @@ function Homepage() {
 
             <div className='recipeCards'>
                 {recipe.map((card, index) => {
-                    return <RecipeCards data={card.recipe} key={index+1}/> // Make unique ids
+                    return <RecipeCards data={card.recipe} key={index+1}/>
                 })}
             </div>
         </div>
