@@ -18,16 +18,24 @@ function Homepage() {
     const [isError, setIsError] = useState(false);
     const [recipe, setRecipe] = useState([]);
 
-    const getRecipe = async () => {
-        // await setQueryText(document.getElementById('query').value);
-        // await setCuisineType(document.getElementById('cuisines').value);
-        // await setMealType(document.getElementById('mealType').value);
+    async function getRecipe() {
+        // setQueryText(document.getElementById('query).innerhtml);
+        // setCuisineType(document.getElementById('cuisines').innerhtml);
+        // setMealType(document.getElementById('mealType').innerhtml);
 
-        const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${cuisineType}&mealType=${mealType}&imageSize=SMALL&random=true`);
+        const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${cuisineType}&mealType=${mealType}&imageSize=SMALL&random=true`); // Is supposed to go in useEffect
         const twentyRecipes = await response.json();
+
+        setTimeout(()=>{setQueryText(document.getElementById('query').value);
+        setCuisineType(document.getElementById('cuisines').value);
+        setMealType(document.getElementById('mealType').value);})
+
+        console.log(queryText);
+        console.log(cuisineType);
+        console.log(mealType);
         console.log(twentyRecipes);
         console.log(twentyRecipes.hits);
-        setRecipe(twentyRecipes.hits);
+        // setRecipe(twentyRecipes.hits);
     }
 
     useEffect(() => {
@@ -43,7 +51,7 @@ function Homepage() {
         return () => {
             // cleanup
         }
-    },[/* recipe */])
+    }, [/* recipe */])
 
     function getSheets() {
         i += 1;
@@ -87,9 +95,8 @@ function Homepage() {
         <div>
             <button onClick={() => getSheets()}>Add Google Sheet</button>
             <div>
-                <input type='text' id='query' name='query' placeholder='Chicken'/>
+                <input type='text' id='query' name='query' defaultValue='Chicken'/>
                 <select id='cuisines' name='cuisines'>
-                    <option className='empty' value='empty'>Select a Cuisine</option>
                     <option className='formOption' value='American'>American</option>
                     <option className='formOption' value='Asian'>Asian</option>
                     <option className='formOption' value='British'>British</option>
@@ -110,7 +117,6 @@ function Homepage() {
                     <option className='formOption' value='South%20East%20Asian'>South East Asian</option>
                 </select>
                 <select id='mealType' name='mealType'>
-                    <option className='empty' value='empty'>Select Meal Type</option>
                     <option className='formOption' value='breakfast'>Breakfast</option>
                     <option className='formOption' value='lunch'>Lunch</option>
                     <option className='formOption' value='dinner'>Dinner</option>
