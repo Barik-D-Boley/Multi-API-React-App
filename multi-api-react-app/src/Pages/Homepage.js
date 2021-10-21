@@ -18,40 +18,16 @@ function Homepage() {
     const [isError, setIsError] = useState(false);
     const [recipe, setRecipe] = useState([]);
 
-    async function getRecipe() {
+    useEffect(() => {
         // setQueryText(document.getElementById('query).innerhtml);
         // setCuisineType(document.getElementById('cuisines').innerhtml);
         // setMealType(document.getElementById('mealType').innerhtml);
 
-        const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${cuisineType}&mealType=${mealType}&imageSize=SMALL&random=true`); // Is supposed to go in useEffect
-        const twentyRecipes = await response.json();
-
-        setTimeout(()=>{setQueryText(document.getElementById('query').value);
-        setCuisineType(document.getElementById('cuisines').value);
-        setMealType(document.getElementById('mealType').value);})
-
-        console.log(queryText);
-        console.log(cuisineType);
-        console.log(mealType);
-        console.log(twentyRecipes);
-        console.log(twentyRecipes.hits);
-        // setRecipe(twentyRecipes.hits);
-    }
-
-    useEffect(() => {
-        getRecipe()
-            .then(setIsLoading(false))
-            .catch((error) => {
-                console.log(error);
-                setIsError(true);
-            })
-        console.log(queryText);
-        console.log(cuisineType);
-        console.log(mealType);
+        // const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${cuisineType}&mealType=${mealType}&imageSize=SMALL&random=true`); // Is supposed to go in useEffect
         return () => {
-            // cleanup
+            cleanup
         }
-    }, [/* recipe */])
+    }, [input])
 
     function getSheets() {
         i += 1;
