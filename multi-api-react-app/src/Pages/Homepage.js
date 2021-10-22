@@ -24,11 +24,15 @@ function Homepage() {
 
     function setMealValues() {
         fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${document.getElementById('query').value}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${document.getElementById('cuisines').value}&mealType=${document.getElementById('mealType').value}&imageSize=SMALL&random=true`)
-            .then(setIsLoading(false))
-            .catch((error) => {
-                console.log(error);
-                setIsError(true);
-            })
+        .then(setIsLoading(false))
+        .then(response => {
+            console.log(response.json());
+            console.log(response.json().hits);
+        })
+        .catch((error) => {
+            console.log(error);
+            setIsError(true);
+        })
 
         console.log(document.getElementById('query').value);
         console.log(document.getElementById('cuisines').value);
