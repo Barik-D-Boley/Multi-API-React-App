@@ -10,24 +10,30 @@ let spreadsheetId = '1Kl036ouyE0L-Mj_Rz6Ysvl4gfQfBrsGg57DW_uIqXso';
 let i = 1;
 
 function Homepage() {
-    const [queryText, setQueryText] = useState('Chicken');
-    const [cuisineType, setCuisineType] = useState('American');
-    const [mealType, setMealType] = useState('Dinner');
-
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
-    const [recipe, setRecipe] = useState([]);
 
     useEffect(() => {
-        // setQueryText(document.getElementById('query).innerhtml);
-        // setCuisineType(document.getElementById('cuisines').innerhtml);
-        // setMealType(document.getElementById('mealType').innerhtml);
+        fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=American&mealType=dinner&imageSize=SMALL&random=true`)
+            .then(setIsLoading(false))
+            .catch((error) => {
+                console.log(error);
+                setIsError(true);
+            })
+    }, [])
 
-        // const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${queryText}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${cuisineType}&mealType=${mealType}&imageSize=SMALL&random=true`); // Is supposed to go in useEffect
-        return () => {
-            cleanup
-        }
-    }, [input])
+    function setMealValues() {
+        fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${document.getElementById('query').value}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${document.getElementById('cuisines').value}&mealType=${document.getElementById('mealType').value}&imageSize=SMALL&random=true`)
+            .then(setIsLoading(false))
+            .catch((error) => {
+                console.log(error);
+                setIsError(true);
+            })
+
+        console.log(document.getElementById('query').value);
+        console.log(document.getElementById('cuisines').value);
+        console.log(document.getElementById('mealType').value);
+    }
 
     function getSheets() {
         i += 1;
@@ -71,8 +77,9 @@ function Homepage() {
         <div>
             <button onClick={() => getSheets()}>Add Google Sheet</button>
             <div>
-                <input type='text' id='query' name='query' defaultValue='Chicken'/>
+                <input type='text' id='query' name='query' placeholder='Chicken'/>
                 <select id='cuisines' name='cuisines'>
+                    <option className='defaultOption' value='empty'>Choose a Cuisine Type</option>
                     <option className='formOption' value='American'>American</option>
                     <option className='formOption' value='Asian'>Asian</option>
                     <option className='formOption' value='British'>British</option>
@@ -93,20 +100,21 @@ function Homepage() {
                     <option className='formOption' value='South%20East%20Asian'>South East Asian</option>
                 </select>
                 <select id='mealType' name='mealType'>
+                    <option className='defaultOption' value='empty'>Choose a Meal Type</option>
                     <option className='formOption' value='breakfast'>Breakfast</option>
                     <option className='formOption' value='lunch'>Lunch</option>
                     <option className='formOption' value='dinner'>Dinner</option>
                     <option className='formOption' value='snack'>Snack</option>
                     <option className='formOption' value='teatime'>Teatime</option>
                 </select>
-                <input type="submit" value='Submit' onClick={() => getRecipe()}/>
+                <input id='submitBtn' type='submit' value='Submit' onClick={() => setMealValues()}/>
             </div>
 
-            <div className='recipeCards'>
+            {/* <div className='recipeCards'>
                 {recipe.map((card, index) => {
                     return <RecipeCards data={card.recipe} key={index+1}/>
                 })}
-            </div>
+            </div> */}
         </div>
     )
 }
