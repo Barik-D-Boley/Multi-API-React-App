@@ -25,9 +25,12 @@ function Homepage() {
     function setMealValues() {
         fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${document.getElementById('query').value}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${document.getElementById('cuisines').value}&mealType=${document.getElementById('mealType').value}&imageSize=SMALL&random=true`)
         .then(setIsLoading(false))
-        .then(response => {
-            console.log(response.json());
-            console.log(response.json().hits);
+        .then((response) => {
+            const jsonRes = response.json();
+            console.log(jsonRes);
+            return (
+                <RecipeCards data={response}/>
+            )
         })
         .catch((error) => {
             console.log(error);
@@ -88,9 +91,9 @@ function Homepage() {
                     <option className='formOption' value='Asian'>Asian</option>
                     <option className='formOption' value='British'>British</option>
                     <option className='formOption' value='Caribbean'>Caribbean</option>
-                    <option className='formOption' value='Central%20European'>Central European</option>
+                    <option className='formOption' value='Central%20Europe'>Central European</option>
                     <option className='formOption' value='Chinese'>Chinese</option>
-                    <option className='formOption' value='Eastern%20European'>Eastern European</option>
+                    <option className='formOption' value='Eastern%20Europe'>Eastern European</option>
                     <option className='formOption' value='French'>French</option>
                     <option className='formOption' value='Indian'>Indian</option>
                     <option className='formOption' value='Italian'>Italian</option>
