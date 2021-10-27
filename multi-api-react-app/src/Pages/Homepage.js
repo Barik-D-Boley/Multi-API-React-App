@@ -28,9 +28,7 @@ function Homepage() {
         .then((response) => {
             const jsonRes = response.json();
             console.log(jsonRes);
-            return (
-                <RecipeCards data={response}/>
-            )
+            return <RecipeCards /* data={response} *//>
         })
         .catch((error) => {
             console.log(error);
