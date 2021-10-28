@@ -12,6 +12,7 @@ let i = 1;
 function Homepage() {
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
+    const [recipe, setRecipe] = useState();
 
     useEffect(() => {
         fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=American&mealType=dinner&imageSize=SMALL&random=true`)
@@ -26,19 +27,19 @@ function Homepage() {
         fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${document.getElementById('query').value}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${document.getElementById('cuisines').value}&mealType=${document.getElementById('mealType').value}&imageSize=SMALL&random=true`)
         .then(setIsLoading(false))
         .then((response) => {
+            console.log(response);
+            // console.log(response.json());
             const jsonRes = response.json();
-            console.log(jsonRes);
-            return <RecipeCards /* data={response} *//>
+            // const jsonRes = response.json();
+            // console.log('.then statement', jsonRes);
+            setRecipe(response);
         })
         .catch((error) => {
             console.log(error);
             setIsError(true);
         })
-
-        console.log(document.getElementById('query').value);
-        console.log(document.getElementById('cuisines').value);
-        console.log(document.getElementById('mealType').value);
     }
+
 
     function getSheets() {
         i += 1;
@@ -113,13 +114,8 @@ function Homepage() {
                     <option className='formOption' value='teatime'>Teatime</option>
                 </select>
                 <input id='submitBtn' type='submit' value='Submit' onClick={() => setMealValues()}/>
+                <RecipeCards recipes={recipe} />
             </div>
-
-            {/* <div className='recipeCards'>
-                {recipe.map((card, index) => {
-                    return <RecipeCards data={card.recipe} key={index+1}/>
-                })}
-            </div> */}
         </div>
     )
 }
