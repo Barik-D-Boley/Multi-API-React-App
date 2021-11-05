@@ -13,22 +13,27 @@ function Homepage() {
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
     const [recipe, setRecipe] = useState();
+    const [boolean, setBoolean] = useState(false)
 
     useEffect(() => {
-        fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=American&mealType=dinner&imageSize=SMALL&random=true`)
-            .then(setIsLoading(false))
-            .catch((error) => {
-                console.log(error);
-                setIsError(true);
-            })
+        // axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=American&mealType=dinner&imageSize=SMALL&random=true`)
+        // .then(setIsLoading(false))
+        // .then((response) => {
+        //     setRecipe(response);
+        // })
+        // .catch((error) => {
+        //     console.log(error);
+        //     setIsError(true);
+        // })
+        setIsLoading(false);
     }, [])
 
     function setMealValues() {
         axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${document.getElementById('query').value}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${document.getElementById('cuisines').value}&mealType=${document.getElementById('mealType').value}&imageSize=SMALL&random=true`)
         .then(setIsLoading(false))
         .then((response) => {
-            console.log('In the homepage', response);
             setRecipe(response);
+            setBoolean(true);
         })
         .catch((error) => {
             console.log(error);
@@ -109,9 +114,8 @@ function Homepage() {
                     <option className='formOption' value='snack'>Snack</option>
                     <option className='formOption' value='teatime'>Teatime</option>
                 </select>
-                <input id='submitBtn' type='submit' value='Submit' onClick={() => setMealValues()}/>
-
-                <RecipeCards recipes={recipe} />
+                <input id='submitBtn' type='submit' value='Submit' onClick={() => {setMealValues()}}/>
+                { boolean ? <RecipeCards recipes={recipe} /> : '' }
             </div>
         </div>
     )

@@ -161,12 +161,12 @@ h1, h2, h3, h4, h5, h6, p, li {
     transform: rotate(360deg);
   }
 }
-h1 {
+h1#errorText {
   font-size: 10rem;
   text-align: center;
 }
 
-p {
+p#errorText {
   font-size: 6rem;
   text-align: center;
 }/*# sourceMappingURL=main.css.map */

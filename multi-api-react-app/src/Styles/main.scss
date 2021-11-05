@@ -5,11 +5,11 @@
 @import './components/loading';
 $base-size: 10rem;
 
-h1 {
+h1#errorText {
     font-size: $base-size;
     text-align: center;
 }
-p {
+p#errorText {
     font-size: $base-size*.6;
     text-align: center;
 }
