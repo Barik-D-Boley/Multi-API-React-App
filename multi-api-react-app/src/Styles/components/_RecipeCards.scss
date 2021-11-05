@@ -1,3 +1,33 @@
+$recipeWidth: 25rem;
+
 .recipeContainer {
     display: flex;
+    border: 1px black solid;
+    width: max-content;
+    flex-wrap: wrap;
+}
+.recipeImg {
+    width: 5rem;
+    height: 1rem;
+}
+.textContainer {
+    display: inline;
+}
+.label {
+    width: $recipeWidth * 0.67;
+}
+.calories {
+    width: $recipeWidth * 0.67;
+}
+.ingredients {
+    width: $recipeWidth * 0.67;
+}
+.cookTime {
+    width: $recipeWidth * 0.67;
+}
+.cautions {
+    width: $recipeWidth * 0.67;
+}
+.sheetsBtn {
+    width: $recipeWidth * 0.67;
 }

@@ -15,21 +15,10 @@ function Homepage() {
     const [recipe, setRecipe] = useState();
     const [boolean, setBoolean] = useState(false)
 
-    useEffect(() => {
-        // axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=chicken&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=American&mealType=dinner&imageSize=SMALL&random=true`)
-        // .then(setIsLoading(false))
-        // .then((response) => {
-        //     setRecipe(response);
-        // })
-        // .catch((error) => {
-        //     console.log(error);
-        //     setIsError(true);
-        // })
-        setIsLoading(false);
-    }, [])
+    useEffect(() => {setIsLoading(false)}, [])
 
     function setMealValues() {
-        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${document.getElementById('query').value}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${document.getElementById('cuisines').value}&mealType=${document.getElementById('mealType').value}&imageSize=SMALL&random=true`)
+        axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${document.getElementById('query').value}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${document.getElementById('cuisines').value}&mealType=${document.getElementById('mealType').value}&random=true`)
         .then(setIsLoading(false))
         .then((response) => {
             setRecipe(response);
