@@ -1,4 +1,4 @@
-$recipeWidth: 25rem;
+$recipeWidth: 20rem;
 
 .recipeContainer {
     display: flex;
@@ -7,8 +7,8 @@ $recipeWidth: 25rem;
     flex-wrap: wrap;
 }
 .recipeImg {
-    width: 5rem;
-    height: 1rem;
+    width: $recipeWidth;
+    height: $recipeWidth;
 }
 .textContainer {
     display: inline;

@@ -171,8 +171,8 @@ h1, h2, h3, h4, h5, h6, p, li {
 }
 
 .recipeImg {
-  width: 5rem;
-  height: 1rem;
+  width: 20rem;
+  height: 20rem;
 }
 
 .textContainer {
@@ -180,27 +180,27 @@ h1, h2, h3, h4, h5, h6, p, li {
 }
 
 .label {
-  width: 16.75rem;
+  width: 13.4rem;
 }
 
 .calories {
-  width: 16.75rem;
+  width: 13.4rem;
 }
 
 .ingredients {
-  width: 16.75rem;
+  width: 13.4rem;
 }
 
 .cookTime {
-  width: 16.75rem;
+  width: 13.4rem;
 }
 
 .cautions {
-  width: 16.75rem;
+  width: 13.4rem;
 }
 
 .sheetsBtn {
-  width: 16.75rem;
+  width: 13.4rem;
 }
 
 h1#errorText {

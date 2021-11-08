@@ -39,16 +39,17 @@ function RecipeCards(recipes) {
     console.log('In RecipeCards', recipes);
     let stuff = [];
     for (let i = 0; i < recipes.length; i++) {
-        const { image, label, calories, ingredientLines, totalTime, cautions } = recipes[i].recipe;
+        const { image, label, calories, yield: servings, ingredientLines, totalTime, cautions } = recipes[i].recipe;
         stuff.push(  
             <div className='recipeContainer' key={i}>
                 <img className='recipeImg' src={image} alt={label} />
                 <div className='textContainer'>
-                    <p className='label'>{label}</p><br/>
-                    <p className='calories'>{calories}</p><br/>
-                    <p className='ingredients'>{ingredientLines}</p><br/>
-                    <p className='cookTime'>{totalTime} minutes</p><br/>
-                    <p className='cautions'>{cautions}</p><br/>
+                    <p className='label'>{label}</p>
+                    <p className='calories'>{Math.round(calories/10)*10} calories</p>
+                    <p>{servings} servings</p>
+                    <p className='ingredients'>{ingredientLines}</p>
+                    <p className='cookTime'>{totalTime} minutes</p>
+                    <p className='cautions'>Cautions: {cautions}</p>
                     <button className='sheetsBtn' onClick={() => getSheets(label)}>Add to Sheets</button>
                 </div>
             </div>
