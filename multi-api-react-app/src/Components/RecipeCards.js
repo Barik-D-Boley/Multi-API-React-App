@@ -1,7 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
-function RecipeCards(recipes, website) {
-    console.log('Website Link', website);
+function RecipeCards(recipes) {
+    const [website, setWebsite] = useState();
+
+    function googleSearch(recipeName) {
+        const options = {
+        method: 'GET',
+        url: `https://google-search3.p.rapidapi.com/api/v1/search/q=${recipeName}&num=2&lr=lang_en&hl=en&cr=US`,
+        headers: {
+            'x-user-agent': 'desktop',
+            'x-proxy-location': 'US',
+            'x-rapidapi-host': 'google-search3.p.rapidapi.com',
+            'x-rapidapi-key': '39eb21bbd1msha190384ce6dd237p1d93c8jsn16d5c24c24db'
+        }
+        };
+
+        axios.request(options).then(function (response) {
+            setWebsite(response.data.results[0].link);
+            console.log('Axios', response.data.results[0].link);
+        }).catch(function (error) {
+            console.error(error);
+        });
+    }
+
     recipes = recipes.recipes.data.hits;
     console.log('In RecipeCards', recipes);
     let stuff = [];
@@ -18,7 +40,7 @@ function RecipeCards(recipes, website) {
                     <p className='cookTime'>{totalTime} minutes</p>
                     <p className='cautions'>Cautions: {cautions}</p>
                     {/* <button className='sheetsBtn' onClick={() => googleSearch(label)}>Google Search</button> */}
-                    <a href={website} target='_blank'>Recipe Link</a>
+                    <a href={website} target='_blank' onClick={() => googleSearch(label)}>Recipe Link</a>
                 </div>
             </div>
         )

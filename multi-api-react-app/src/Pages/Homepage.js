@@ -40,7 +40,7 @@ function Homepage() {
 
         axios.request(options).then(function (response) {
             setWebsite(response.data.results[0].link);
-            console.log(response.data.results[0].link);
+            console.log('Axios', response.data.results[0].link);
         }).catch(function (error) {
             console.error(error);
         });
@@ -89,7 +89,8 @@ function Homepage() {
                 </select>
                 <input id='submitBtn' type='submit' value='Submit' onClick={() => {
                     setMealValues();
-                    googleSearch('Hallo');
+                    googleSearch(website);
+                    console.log('Website', website);
                 }}/>
                 { boolean ? <RecipeCards recipes={recipe} website={website} /> : '' }
             </div>
