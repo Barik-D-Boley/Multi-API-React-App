@@ -26,21 +26,26 @@ function Homepage() {
         })
     }
 
-    function googleSearch(recipeName) {
+    function htmlToPdf() {
         const options = {
-        method: 'GET',
-        url: `https://google-search3.p.rapidapi.com/api/v1/search/q=${recipeName}&num=2&lr=lang_en&hl=en&cr=US`,
+        method: 'POST',
+        url: 'https://yakpdf.p.rapidapi.com/pdf',
         headers: {
-            'x-user-agent': 'desktop',
-            'x-proxy-location': 'US',
-            'x-rapidapi-host': 'google-search3.p.rapidapi.com',
+            'content-type': 'application/json',
+            'x-rapidapi-host': 'yakpdf.p.rapidapi.com',
             'x-rapidapi-key': '39eb21bbd1msha190384ce6dd237p1d93c8jsn16d5c24c24db'
+        },
+        data: {
+            pdf: {format: 'A4', printBackground: true, scale: 1},
+            source: {
+            html: '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><h1>Hello World!</h1></body></html>'
+            },
+            wait: {for: 'navigation', timeout: 250, waitUntil: 'load'}
         }
         };
 
         axios.request(options).then(function (response) {
-            setWebsite(response.data.results[0].link);
-            console.log('Axios', response.data.results[0].link);
+            console.log(response.data);
         }).catch(function (error) {
             console.error(error);
         });
@@ -55,7 +60,6 @@ function Homepage() {
 
     return (
         <div>
-            <button onClick={() => googleSearch('Pizza')}>Google Search</button>
             <div>
                 <input type='text' id='query' name='query' placeholder='Chicken'/>
                 <select id='cuisines' name='cuisines'>
@@ -89,8 +93,6 @@ function Homepage() {
                 </select>
                 <input id='submitBtn' type='submit' value='Submit' onClick={() => {
                     setMealValues();
-                    googleSearch(website);
-                    console.log('Website', website);
                 }}/>
                 { boolean ? <RecipeCards recipes={recipe} website={website} /> : '' }
             </div>

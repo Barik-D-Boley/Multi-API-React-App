@@ -2,24 +2,27 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function RecipeCards(recipes) {
-    const [website, setWebsite] = useState();
-
-    function googleSearch(recipeName) {
+    function webSearch(recipeName) {
         const options = {
         method: 'GET',
-        url: `https://google-search3.p.rapidapi.com/api/v1/search/q=${recipeName}&num=2&lr=lang_en&hl=en&cr=US`,
+        url: 'https://contextualwebsearch-websearch-v1.p.rapidapi.com/api/Search/WebSearchAPI',
+        params: {
+            q: `${recipeName}`,
+            pageNumber: '1',
+            pageSize: '1',
+            autoCorrect: 'false'
+        },
         headers: {
-            'x-user-agent': 'desktop',
-            'x-proxy-location': 'US',
-            'x-rapidapi-host': 'google-search3.p.rapidapi.com',
+            'x-rapidapi-host': 'contextualwebsearch-websearch-v1.p.rapidapi.com',
             'x-rapidapi-key': '39eb21bbd1msha190384ce6dd237p1d93c8jsn16d5c24c24db'
         }
         };
 
         axios.request(options).then(function (response) {
-            setWebsite(response.data.results[0].link);
-            console.log('Axios', response.data.results[0].link);
-        }).catch(function (error) {
+            console.log(response.data);
+            window.open(response.data.value[0].url)
+        })
+        .catch(function (error) {
             console.error(error);
         });
     }
@@ -39,8 +42,7 @@ function RecipeCards(recipes) {
                     <p className='ingredients'>{ingredientLines}</p>
                     <p className='cookTime'>{totalTime} minutes</p>
                     <p className='cautions'>Cautions: {cautions}</p>
-                    {/* <button className='sheetsBtn' onClick={() => googleSearch(label)}>Google Search</button> */}
-                    <a href={website} target='_blank' onClick={() => googleSearch(label)}>Recipe Link</a>
+                    <button onClick={() => webSearch(label)}>Recipe Link</button>
                 </div>
             </div>
         )
