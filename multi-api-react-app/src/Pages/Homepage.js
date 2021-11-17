@@ -8,7 +8,7 @@ function Homepage() {
     const [isLoading, setIsLoading] = useState(true);
     const [isError, setIsError] = useState(false);
     const [recipe, setRecipe] = useState();
-    const [website, setWebsite] = useState();
+    let website;
     const [boolean, setBoolean] = useState(false);
 
     useEffect(() => {setIsLoading(false)}, [])
@@ -26,31 +26,6 @@ function Homepage() {
         })
     }
 
-    function htmlToPdf() {
-        const options = {
-        method: 'POST',
-        url: 'https://yakpdf.p.rapidapi.com/pdf',
-        headers: {
-            'content-type': 'application/json',
-            'x-rapidapi-host': 'yakpdf.p.rapidapi.com',
-            'x-rapidapi-key': '39eb21bbd1msha190384ce6dd237p1d93c8jsn16d5c24c24db'
-        },
-        data: {
-            pdf: {format: 'A4', printBackground: true, scale: 1},
-            source: {
-            html: '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head><body><h1>Hello World!</h1></body></html>'
-            },
-            wait: {for: 'navigation', timeout: 250, waitUntil: 'load'}
-        }
-        };
-
-        axios.request(options).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.error(error);
-        });
-    }
-
     if (isLoading === true) {
         return <LoadingPage />
     }
@@ -59,41 +34,43 @@ function Homepage() {
     }
 
     return (
-        <div>
-            <div>
-                <input type='text' id='query' name='query' placeholder='Chicken'/>
-                <select id='cuisines' name='cuisines'>
-                    <option className='defaultOption' value='empty'>Choose a Cuisine Type</option>
-                    <option className='formOption' value='American'>American</option>
-                    <option className='formOption' value='Asian'>Asian</option>
-                    <option className='formOption' value='British'>British</option>
-                    <option className='formOption' value='Caribbean'>Caribbean</option>
-                    <option className='formOption' value='Central%20Europe'>Central European</option>
-                    <option className='formOption' value='Chinese'>Chinese</option>
-                    <option className='formOption' value='Eastern%20Europe'>Eastern European</option>
-                    <option className='formOption' value='French'>French</option>
-                    <option className='formOption' value='Indian'>Indian</option>
-                    <option className='formOption' value='Italian'>Italian</option>
-                    <option className='formOption' value='Japanese'>Japanese</option>
-                    <option className='formOption' value='Kosher'>Kosher</option>
-                    <option className='formOption' value='Mediterranean'>Mediterranean</option>
-                    <option className='formOption' value='Mexican'>Mexican</option>
-                    <option className='formOption' value='Middle%20Eastern'>Middle Eastern</option>
-                    <option className='formOption' value='Nordic'>Nordic</option>
-                    <option className='formOption' value='South%20American'>South American</option>
-                    <option className='formOption' value='South%20East%20Asian'>South East Asian</option>
-                </select>
-                <select id='mealType' name='mealType'>
-                    <option className='defaultOption' value='empty'>Choose a Meal Type</option>
-                    <option className='formOption' value='breakfast'>Breakfast</option>
-                    <option className='formOption' value='lunch'>Lunch</option>
-                    <option className='formOption' value='dinner'>Dinner</option>
-                    <option className='formOption' value='snack'>Snack</option>
-                    <option className='formOption' value='teatime'>Teatime</option>
-                </select>
-                <input id='submitBtn' type='submit' value='Submit' onClick={() => {
-                    setMealValues();
-                }}/>
+        <div className='masterContainer'>
+            <div id='navbarContainer'>
+                <div id='navbar'>
+                    <input className='input' id='query' name='query' type='text' placeholder='Chicken'/>
+                    <select className='input' id='cuisines' name='cuisines'>
+                        <option className='defaultOption' value='empty'>Choose a Cuisine</option>
+                        <option className='formOption' value='American'>American</option>
+                        <option className='formOption' value='Asian'>Asian</option>
+                        <option className='formOption' value='British'>British</option>
+                        <option className='formOption' value='Caribbean'>Caribbean</option>
+                        <option className='formOption' value='Central%20Europe'>Central European</option>
+                        <option className='formOption' value='Chinese'>Chinese</option>
+                        <option className='formOption' value='Eastern%20Europe'>Eastern European</option>
+                        <option className='formOption' value='French'>French</option>
+                        <option className='formOption' value='Indian'>Indian</option>
+                        <option className='formOption' value='Italian'>Italian</option>
+                        <option className='formOption' value='Japanese'>Japanese</option>
+                        <option className='formOption' value='Kosher'>Kosher</option>
+                        <option className='formOption' value='Mediterranean'>Mediterranean</option>
+                        <option className='formOption' value='Mexican'>Mexican</option>
+                        <option className='formOption' value='Middle%20Eastern'>Middle Eastern</option>
+                        <option className='formOption' value='Nordic'>Nordic</option>
+                        <option className='formOption' value='South%20American'>South American</option>
+                        <option className='formOption' value='South%20East%20Asian'>South East Asian</option>
+                    </select>
+                    <select className='input' id='mealType' name='mealType'>
+                        <option className='defaultOption' value='empty'>Meal Type</option>
+                        <option className='formOption' value='breakfast'>Breakfast</option>
+                        <option className='formOption' value='lunch'>Lunch</option>
+                        <option className='formOption' value='dinner'>Dinner</option>
+                        <option className='formOption' value='snack'>Snack</option>
+                        <option className='formOption' value='teatime'>Teatime</option>
+                    </select>
+                    <input className='input' id='submitBtn' type='submit' value='Submit' onClick={() => {setMealValues()}}/>
+                </div>
+            </div>
+            <div id='allRecipes'>
                 { boolean ? <RecipeCards recipes={recipe} website={website} /> : '' }
             </div>
         </div>

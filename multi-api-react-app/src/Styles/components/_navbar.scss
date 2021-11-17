@@ -1,0 +1,40 @@
+$width: 50rem;
+
+#navbarContainer {
+    display: flex;
+    background-color: #3f3f3f;
+    width: 100%;
+    height: 3rem;
+}
+    #navbar {
+        width: $width;
+        border: 1px solid blue;
+        display: flex;
+        margin: 0 auto;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+        #query {
+            width: $width/5;
+
+        }
+        #cuisines {
+            width: $width/5;
+
+        }
+        #mealType {
+            width: $width/5;
+
+        }
+        #submitBtn {
+            width: $width/5;
+        }
+
+.input {
+    text-align: center;
+    font-size: 1rem;
+}
+.defaultOption {
+    color: gray;
+}

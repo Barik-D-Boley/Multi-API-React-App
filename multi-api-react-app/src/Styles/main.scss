@@ -1,16 +1,7 @@
 @import './base/reset';
 @import './base/everything';
-// @import './components/form';
 @import './components/error';
 @import './components/loading';
 @import './components/RecipeCards';
-$base-size: 10rem;
-
-h1#errorText {
-    font-size: $base-size;
-    text-align: center;
-}
-p#errorText {
-    font-size: $base-size*.6;
-    text-align: center;
-}
+@import './pages/homepage';
+@import './components/navbar';

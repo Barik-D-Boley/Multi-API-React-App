@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import axios from 'axios';
 
 function RecipeCards(recipes) {
@@ -19,7 +19,6 @@ function RecipeCards(recipes) {
         };
 
         axios.request(options).then(function (response) {
-            console.log(response.data);
             window.open(response.data.value[0].url)
         })
         .catch(function (error) {
@@ -28,7 +27,6 @@ function RecipeCards(recipes) {
     }
 
     recipes = recipes.recipes.data.hits;
-    console.log('In RecipeCards', recipes);
     let stuff = [];
     for (let i = 0; i < recipes.length; i++) {
         const { image, label, calories, yield: servings, ingredientLines, totalTime, cautions } = recipes[i].recipe;

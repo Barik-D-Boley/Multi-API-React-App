@@ -1,6 +1,7 @@
 @import '../themes/loadingAndError';
 
 $face-size: 14rem;
+$base-size: 10rem;
 .happyFace {
     margin: 0 auto;
     position: relative;
@@ -94,4 +95,13 @@ $face-size: 14rem;
     &:hover {
         cursor: pointer;
     }
+}
+
+h1#errorText {
+    font-size: $base-size;
+    text-align: center;
+}
+p#errorText {
+    font-size: $base-size*.6;
+    text-align: center;
 }
