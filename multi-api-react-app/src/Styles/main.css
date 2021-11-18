@@ -216,7 +216,6 @@ p#errorText {
 #allRecipes {
   margin: 0 auto;
   justify-content: center;
-  border: 1px solid green;
 }
 
 #navbarContainer {
@@ -258,4 +257,11 @@ p#errorText {
 
 .defaultOption {
   color: gray;
+}
+
+#welcome {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid blue;
 }/*# sourceMappingURL=main.css.map */

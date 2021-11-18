@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Welcome from '../Components/Welcome';
 import RecipeCards from '../Components/RecipeCards';
 import LoadingPage from '../Components/LoadingPage';
 import ErrorPage from '../Components/ErrorPage';
@@ -71,7 +72,7 @@ function Homepage() {
                 </div>
             </div>
             <div id='allRecipes'>
-                { boolean ? <RecipeCards recipes={recipe} website={website} /> : '' }
+                { boolean ? <RecipeCards recipes={recipe} website={website} /> : <Welcome /> }
             </div>
         </div>
     )
