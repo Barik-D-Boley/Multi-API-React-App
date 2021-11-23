@@ -5,29 +5,41 @@ $recipeWidth: 20rem;
     border: 1px black solid;
     width: max-content;
     flex-wrap: wrap;
+    background-color: white;
+    margin-bottom: 2rem;
+    height: 25rem;
 }
 .recipeImg {
     width: $recipeWidth;
-    height: $recipeWidth;
+    height: 100%;
 }
 .textContainer {
-    display: inline;
+    display: flex;
+    padding: 0;
+    width: $recipeWidth * 0.67;
+    flex-wrap: wrap;
 }
 .label {
     width: $recipeWidth * 0.67;
+    margin: 0;
 }
 .calories {
+    margin: 0;
     width: $recipeWidth * 0.67;
 }
 .ingredients {
+    margin: 0;
     width: $recipeWidth * 0.67;
 }
 .cookTime {
+    margin: 0;
     width: $recipeWidth * 0.67;
 }
 .cautions {
+    margin: 0;
     width: $recipeWidth * 0.67;
 }
-.sheetsBtn {
+.submitBtn {
+    margin: 0;
     width: $recipeWidth * 0.67;
 }

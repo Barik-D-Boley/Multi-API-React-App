@@ -25,6 +25,10 @@ h1, h2, h3, h4, h5, h6, p, li {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+  background-color: lightgray;
+}
+
 .happyFace, .sadFace {
   margin: 0 auto;
   position: relative;
@@ -178,44 +182,58 @@ p#errorText {
   width: -moz-max-content;
   width: max-content;
   flex-wrap: wrap;
+  background-color: white;
+  margin-bottom: 2rem;
+  height: 25rem;
 }
 
 .recipeImg {
   width: 20rem;
-  height: 20rem;
+  height: 100%;
 }
 
 .textContainer {
-  display: inline;
+  display: flex;
+  padding: 0;
+  width: 13.4rem;
+  flex-wrap: wrap;
 }
 
 .label {
   width: 13.4rem;
+  margin: 0;
 }
 
 .calories {
+  margin: 0;
   width: 13.4rem;
 }
 
 .ingredients {
+  margin: 0;
   width: 13.4rem;
 }
 
 .cookTime {
+  margin: 0;
   width: 13.4rem;
 }
 
 .cautions {
+  margin: 0;
   width: 13.4rem;
 }
 
-.sheetsBtn {
+.submitBtn {
+  margin: 0;
   width: 13.4rem;
 }
 
 #allRecipes {
+  display: inline-flex;
+  flex-wrap: wrap;
   margin: 0 auto;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 #navbarContainer {
@@ -223,11 +241,11 @@ p#errorText {
   background-color: #3f3f3f;
   width: 100%;
   height: 3rem;
+  margin-bottom: 2rem;
 }
 
 #navbar {
   width: 50rem;
-  border: 1px solid blue;
   display: flex;
   margin: 0 auto;
   align-items: center;
@@ -264,4 +282,9 @@ p#errorText {
   align-items: center;
   justify-content: center;
   border: 1px solid blue;
+  height: 52rem;
+}
+
+.ingDiv {
+  background-color: blue;
 }/*# sourceMappingURL=main.css.map */

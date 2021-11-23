@@ -1,6 +1,9 @@
+$height: 52rem;
+
 #welcome {
     display: flex;
     align-items: center;
     justify-content: center;
     border: 1px solid blue;
+    height: $height;
 }

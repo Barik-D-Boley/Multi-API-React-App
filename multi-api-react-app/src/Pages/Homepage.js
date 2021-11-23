@@ -11,6 +11,7 @@ function Homepage() {
     const [recipe, setRecipe] = useState();
     let website;
     const [boolean, setBoolean] = useState(false);
+    const [boolean2, setBoolean2] = useState(false)
 
     useEffect(() => {setIsLoading(false)}, [])
 

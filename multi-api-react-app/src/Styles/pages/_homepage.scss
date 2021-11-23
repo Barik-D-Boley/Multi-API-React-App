@@ -2,8 +2,8 @@
 
 }
 #allRecipes {
+    display: inline-flex;
+    flex-wrap: wrap;
     margin: 0 auto;
-    justify-content: center;
-
-    // border: 1px solid green;
+    justify-content: space-around;
 }
