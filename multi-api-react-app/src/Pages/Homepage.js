@@ -11,7 +11,6 @@ function Homepage() {
     const [recipe, setRecipe] = useState();
     let website;
     const [boolean, setBoolean] = useState(false);
-    const [boolean2, setBoolean2] = useState(false)
 
     useEffect(() => {setIsLoading(false)}, [])
 
@@ -69,12 +68,15 @@ function Homepage() {
                         <option className='formOption' value='snack'>Snack</option>
                         <option className='formOption' value='teatime'>Teatime</option>
                     </select>
-                    <input className='input' id='submitBtn' type='submit' value='Submit' onClick={() => {setMealValues()}}/>
+                    <input className='input submitBtn' /* id='submitBtn' */ type='submit' value='Submit' onClick={() => {setMealValues()}}/>
                 </div>
             </div>
             <div id='allRecipes'>
                 { boolean ? <RecipeCards recipes={recipe} website={website} /> : <Welcome /> }
             </div>
+            <footer>
+                Designed by Barik Boley | 5902 W Peoria Ave, Glendale, AZ 85302 | <a href="mailto:nowhere@gmail.org?cc=name2@rapidtables.com&bcc=name3@reapidtables.com&subject=The%20subject%20of%20the%20email&body=The%20body%20of%20the%email" id="contactUs">Contact Us</a> | Copyright &copy; 2021 My Thoughts
+            </footer>
         </div>
     )
 }

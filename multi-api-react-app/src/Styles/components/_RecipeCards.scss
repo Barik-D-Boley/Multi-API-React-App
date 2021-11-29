@@ -1,17 +1,20 @@
 $recipeWidth: 20rem;
+$border-radius: 1rem;
 
 .recipeContainer {
     display: flex;
-    border: 1px black solid;
     width: max-content;
     flex-wrap: wrap;
+    box-shadow: 0 0 1rem black;
     background-color: white;
     margin-bottom: 2rem;
     height: 25rem;
+    border-radius: $border-radius;
 }
 .recipeImg {
     width: $recipeWidth;
     height: 100%;
+    border-radius: $border-radius 0 0 $border-radius;
 }
 .textContainer {
     display: flex;
@@ -19,27 +22,21 @@ $recipeWidth: 20rem;
     width: $recipeWidth * 0.67;
     flex-wrap: wrap;
 }
-.label {
+.recipePart {
+    margin: auto 0;
     width: $recipeWidth * 0.67;
-    margin: 0;
-}
-.calories {
-    margin: 0;
-    width: $recipeWidth * 0.67;
-}
-.ingredients {
-    margin: 0;
-    width: $recipeWidth * 0.67;
-}
-.cookTime {
-    margin: 0;
-    width: $recipeWidth * 0.67;
-}
-.cautions {
-    margin: 0;
-    width: $recipeWidth * 0.67;
+    padding: 0 .2rem;
 }
 .submitBtn {
     margin: 0;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    background-color: rgb(0, 60, 255);
     width: $recipeWidth * 0.67;
+    border-radius: 0 $border-radius $border-radius 0;
+    &:hover {
+        background-color: rgb(0, 0, 220);
+        cursor: pointer;
+    }
 }

@@ -1,9 +1,24 @@
-.masterContainer {
-
-}
 #allRecipes {
     display: inline-flex;
     flex-wrap: wrap;
     margin: 0 auto;
     justify-content: space-around;
+}
+
+/* Footer */
+footer {
+    font-size: 1.1rem;
+    height: 1.4rem;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    text-align: center;
+    position: relative;
+    top: 0;
+}
+#contactUs {
+    text-decoration: none;
+    color: white;
+    &:hover {
+        color: rgb(200, 200, 200);
+    }
 }

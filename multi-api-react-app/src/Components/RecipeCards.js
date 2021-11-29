@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RecipeDNE from './RecipeDNE';
 import axios from 'axios';
 
@@ -9,11 +9,6 @@ function joinInput(input) {
 }
 
 function RecipeCards(recipes) {
-    const [recipeName, setRecipeName] = useState('');
-    const [allIngredients, setAllIngredients] = useState('');
-
-    console.log(recipes);
-
     if (recipes.recipes.data.to === 0) return <RecipeDNE />
     function webSearch(recipeName) {
         const options = {
@@ -42,39 +37,30 @@ function RecipeCards(recipes) {
     recipes = recipes.recipes.data.hits;
     let stuff = [];
     for (let i = 0; i < recipes.length; i++) {
-        const { image, label, calories, yield: servings, ingredientLines, totalTime, cautions } = recipes[i].recipe;
+        const { image, label, calories, yield: servings, ingredientLines, ingredients, totalTime, cautions } = recipes[i].recipe;
+        let ingredientList = [];
+        if (ingredientLines.length > 0) ingredientList = ingredientLines;
+        else {
+            ingredients.forEach(ing => {
+                ingredientList.push(ing.text);
+            });
+        }
         stuff.push(  
             <div className='recipeContainer' key={i}>
                 <img className='recipeImg' src={image} alt={label} />
                 <div className='textContainer'>
-                    <h3 className='label'>{label}</h3>
-                    <p className='calories'>{Math.round(calories/10)*10} calories</p>
-                    <p>{servings} servings</p>
-                    <p className='ingredients'>Ingredients: <br />{ingredientLines.splice(0, 3).join(', ')}</p>
-                    <button onClick={() => {
-                        console.log('Hallo');
-                        setRecipeName(label);
-                        setAllIngredients(ingredientLines.join(', '));
-                    }}>Read More ...</button>
-
-
-                    
-                    <p className='cookTime'>{totalTime} minutes</p>
-                    <p className='cautions'>Cautions: {joinInput(cautions)}</p>
+                    <h3 className='recipePart'>{label}</h3>
+                    <p className='recipePart'>{Math.round(calories/10)*10} calories</p>
+                    <p className='recipePart'>Makes {servings} servings</p>
+                    <p className='recipePart'>Ingredients: <br />{ingredientList.splice(0, 6).join(', ')}</p>           
+                    <p className='recipePart'>Cook time: {totalTime} minutes</p>
+                    <p className='recipePart'>Cautions: {joinInput(cautions)}</p>
                     <button className='submitBtn' onClick={() => webSearch(label)}>Recipe Link</button>
                 </div>
             </div>
         )
     }
-    return (
-        <div id='allRecipes'>
-            {stuff}
-            <div>
-                <h1>{recipeName}</h1>
-                <p>{allIngredients}</p>
-            </div>
-        </div>
-    )
+    return stuff;
 }
 
 export default RecipeCards

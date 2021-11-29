@@ -21,7 +21,7 @@ q:before, q:after {
   content: none;
 }
 
-h1, h2, h3, h4, h5, h6, p, li {
+h1, h2, h3, h4, h5, h6, p, li, footer {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -177,19 +177,21 @@ p#errorText {
 }
 .recipeContainer {
   display: flex;
-  border: 1px black solid;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
   flex-wrap: wrap;
+  box-shadow: 0 0 1rem black;
   background-color: white;
   margin-bottom: 2rem;
   height: 25rem;
+  border-radius: 1rem;
 }
 
 .recipeImg {
   width: 20rem;
   height: 100%;
+  border-radius: 1rem 0 0 1rem;
 }
 
 .textContainer {
@@ -199,34 +201,24 @@ p#errorText {
   flex-wrap: wrap;
 }
 
-.label {
+.recipePart {
+  margin: auto 0;
   width: 13.4rem;
-  margin: 0;
-}
-
-.calories {
-  margin: 0;
-  width: 13.4rem;
-}
-
-.ingredients {
-  margin: 0;
-  width: 13.4rem;
-}
-
-.cookTime {
-  margin: 0;
-  width: 13.4rem;
-}
-
-.cautions {
-  margin: 0;
-  width: 13.4rem;
+  padding: 0 0.2rem;
 }
 
 .submitBtn {
   margin: 0;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  background-color: #003cff;
   width: 13.4rem;
+  border-radius: 0 1rem 1rem 0;
+}
+.submitBtn:hover {
+  background-color: #0000dc;
+  cursor: pointer;
 }
 
 #allRecipes {
@@ -236,55 +228,77 @@ p#errorText {
   justify-content: space-around;
 }
 
+/* Footer */
+footer {
+  font-size: 1.1rem;
+  height: 1.4rem;
+  background-color: black;
+  color: white;
+  text-align: center;
+  position: relative;
+  top: 0;
+}
+
+#contactUs {
+  text-decoration: none;
+  color: white;
+}
+#contactUs:hover {
+  color: #c8c8c8;
+}
+
+.input {
+  text-align: center;
+  font-size: 1rem;
+  width: 12rem;
+  height: 1.7142857143rem;
+  font-size: 1.3rem;
+  border-radius: 0.3rem;
+}
+
 #navbarContainer {
   display: flex;
   background-color: #3f3f3f;
   width: 100%;
-  height: 3rem;
+  height: 4rem;
   margin-bottom: 2rem;
 }
 
 #navbar {
-  width: 50rem;
+  width: 60rem;
   display: flex;
   margin: 0 auto;
   align-items: center;
   justify-content: space-between;
 }
 
-#query {
-  width: 10rem;
-}
-
-#cuisines {
-  width: 10rem;
-}
-
-#mealType {
-  width: 10rem;
-}
-
 #submitBtn {
-  width: 10rem;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  background-color: #3396FF;
 }
-
-.input {
-  text-align: center;
-  font-size: 1rem;
+#submitBtn:hover {
+  background-color: #0000c8;
+  cursor: pointer;
 }
 
 .defaultOption {
   color: gray;
 }
 
-#welcome {
+.welcome {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid blue;
-  height: 52rem;
+  height: 51.14rem;
+  width: 100vw;
+  flex-wrap: wrap;
+  align-content: center;
 }
 
-.ingDiv {
-  background-color: blue;
+.dne {
+  text-align: center;
+  height: 3.5rem;
+  width: 100%;
 }/*# sourceMappingURL=main.css.map */

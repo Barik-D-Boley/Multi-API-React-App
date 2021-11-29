@@ -1,9 +1,16 @@
-$height: 52rem;
+$height: 51.14rem;
 
-#welcome {
+.welcome {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid blue;
     height: $height;
+    width: 100vw;
+    flex-wrap: wrap;
+    align-content: center;
+}
+.dne {
+    text-align: center;
+    height: 3.5rem;
+    width: 100%;
 }
