@@ -12,7 +12,10 @@ function Homepage() {
     let website;
     const [boolean, setBoolean] = useState(false);
 
-    useEffect(() => {setIsLoading(false)}, [])
+    useEffect(() => {
+        setIsLoading(false);
+        alert(`I'm using my late pass from the twin day for this assignment`);
+    }, [])
 
     function setMealValues() {
         axios.get(`https://api.edamam.com/api/recipes/v2?type=public&q=${document.getElementById('query').value}&app_id=11ff8d9e&app_key=01250d39e0db773e22ad3860dcbfc9f9&cuisineType=${document.getElementById('cuisines').value}&mealType=${document.getElementById('mealType').value}&random=true`)
@@ -27,12 +30,8 @@ function Homepage() {
         })
     }
 
-    if (isLoading === true) {
-        return <LoadingPage />
-    }
-    if (isError === true) {
-        return <ErrorPage />
-    }
+    if (isLoading === true) return <LoadingPage />
+    if (isError === true) return <ErrorPage />
 
     return (
         <div className='masterContainer'>
@@ -68,7 +67,7 @@ function Homepage() {
                         <option className='formOption' value='snack'>Snack</option>
                         <option className='formOption' value='teatime'>Teatime</option>
                     </select>
-                    <input className='input submitBtn' /* id='submitBtn' */ type='submit' value='Submit' onClick={() => {setMealValues()}}/>
+                    <input className='input submitBtn' type='submit' value='Submit' onClick={() => {setMealValues()}}/>
                 </div>
             </div>
             <div id='allRecipes'>
