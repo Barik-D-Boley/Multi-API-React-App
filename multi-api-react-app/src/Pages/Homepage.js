@@ -14,7 +14,6 @@ function Homepage() {
 
     useEffect(() => {
         setIsLoading(false);
-        alert(`I'm using my late pass from the twin day for this assignment`);
     }, [])
 
     function setMealValues() {
